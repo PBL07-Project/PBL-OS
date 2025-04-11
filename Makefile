@@ -1,17 +1,15 @@
-# Makefile for Real-Time Chat Application (.cc version)
-
-# Compiler and Flags
 CXX = g++
-CXXFLAGS = -pthread -Wall -Wextra -std=c++11
+CXXFLAGS = -std=c++17 -Wall `pkg-config gtkmm-3.0 --cflags` -I/usr/include/mysql
+LDFLAGS = `pkg-config gtkmm-3.0 --libs` -lmysqlclient
 
-# Targets
-all: server client
+SRC = main.cpp db/db.cpp
+OBJ = $(SRC:.cpp=.o)
+TARGET = chat_app
 
-server: server.cc
-	$(CXX) $(CXXFLAGS) -o server server.cc
+all: $(TARGET)
 
-client: client.cc
-	$(CXX) $(CXXFLAGS) -o client client.cc
+$(TARGET): $(OBJ)
+	$(CXX) $(OBJ) -o $@ $(LDFLAGS)
 
 clean:
-	rm -f server client
+	rm -f $(OBJ) $(TARGET)

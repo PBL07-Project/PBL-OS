@@ -1,0 +1,36 @@
+/* style.css - CSS styling for DeepChat */
+
+window {
+    background-color: #f0f8ff;
+}
+
+#homeTitle {
+    color: #FF4500;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+#loginButton, #registerButton {
+    background-color: #4CAF50;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#backButton {
+    background-color: #FF5733;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+#loginEntry, #registerEntry {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

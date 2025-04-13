@@ -1,15 +1,16 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall `pkg-config gtkmm-3.0 --cflags` -I/usr/include/mysql
-LDFLAGS = `pkg-config gtkmm-3.0 --libs` -lmysqlclient
+CXXFLAGS = -std=c++17 -Wall $(shell pkg-config gtkmm-3.0 --cflags)
+LDFLAGS = $(shell pkg-config gtkmm-3.0 --libs) -lmysqlclient
 
-SRC = main.cpp db/db.cpp
-OBJ = $(SRC:.cpp=.o)
-TARGET = chat_app
+SRCS = main.cpp homepage.cpp login.cpp register.cpp database.cpp
+TARGET = deepchat
 
 all: $(TARGET)
 
-$(TARGET): $(OBJ)
-	$(CXX) $(OBJ) -o $@ $(LDFLAGS)
+$(TARGET): $(SRCS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS) $(LDFLAGS)
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(TARGET) *.o
+
+.PHONY: all clean
